@@ -26,7 +26,7 @@ public class QuizCardBuilder {
     question.setWrapStyleWord(true);
     question.setFont(bigFont);
 
-    JScrollPane qScroller = new JScrollPane(questoin);
+    JScrollPane qScroller = new JScrollPane(question);
     qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -113,8 +113,7 @@ public class QuizCardBuilder {
             writer.write(card.getQeustion() + "/");
             writer.write(card.getAnswer() + "\n");
           }
-          writer.close();
-      } catch(IOException ex){
+
         System.out.println("couldn't write the cardList out");
         ex.printStackTrace();
       }

@@ -1,6 +1,12 @@
+
+/**
+ * Purpose: How do you get action events for two different buttons when each button needs to do something different?
+ *   -> Use Inner Class. 
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
 public class TwoButtons {
   JFrame frame;
   JLabel label;
@@ -10,7 +16,7 @@ public class TwoButtons {
     gui.go();
   }
 
-  public void go(){
+  public void go() {
     frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -28,18 +34,18 @@ public class TwoButtons {
     frame.getContentPane().add(BorderLayout.EAST, labelButton);
     frame.getContentPane().add(BorderLayout.WEST, label);
 
-    frame.setSize(600,600);
+    frame.setSize(800, 800);
     frame.setVisible(true);
   }
 
-  class LabelListener implements ActionListener{
-    public void actionPerformed(ActionEvent event){
+  class LabelListener implements ActionListener {
+    public void actionPerformed(ActionEvent event) {
       label.setText("Ouch!");
     }
   } // close inner class
 
   class ColorListener implements ActionListener {
-    public void actionPerformed(ActionEvent event){
+    public void actionPerformed(ActionEvent event) {
       frame.repaint();
     }
   } // close inner class
