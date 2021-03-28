@@ -1,3 +1,7 @@
+
+/**
+ * Purpose: authoring tool for building e-flashcards
+ */
 import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -15,13 +19,20 @@ public class QuizCardBuilder {
     builder.go();
   }
 
-  public void go(){
-    // build and display gui
+  /**
+   * Purpose: Builds and displays the GUI, including making and registering event
+   * listeners.
+   */
+  public void go() {
 
     frame = new JFrame("Quiz Card Builder");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     JPanel mainPanel = new JPanel();
+
     Font bigFont = new Font("sanserif", Font.BOLD, 24);
-    question = new JTextArea(6,20);
+
+    question = new JTextArea(6, 20);
     question.setLineWrap(true);
     question.setWrapStyleWord(true);
     question.setFont(bigFont);
@@ -30,7 +41,7 @@ public class QuizCardBuilder {
     qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-    answer = new JTextArea(6,20);
+    answer = new JTextArea(6, 20);
     answer.setLineWrap(true);
     answer.setWrapStyleWord(true);
     answer.setFont(bigFont);
@@ -61,61 +72,81 @@ public class QuizCardBuilder {
     fileMenu.add(newMenuItem);
     fileMenu.add(saveMenuItem);
     menuBar.add(fileMenu);
+
     frame.setJMenuBar(menuBar);
     frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+
     frame.setSize(500, 600);
     frame.setVisible(true);
   }
 
-  // inner class
+  /**
+   * Inner Class Purpose: Triggered when user hits "Next Card" button; means the
+   * user wants to store that card in the list and start a new card
+   */
   private class NextCardListener implements ActionListener {
-    public void actionPerformed(ActionEvent av){
+    public void actionPerformed(ActionEvent av) {
       // add the current card to the list and clear the text areas
       QuizCard card = new QuizCard(question.getText(), answer.getText());
       cardList.add(card);
       clearCard();
     }
-  }  // close inner class
+  } // close inner class
 
+  /**
+   * Inner class Purpose: Tiggered when user chooses "Save" from the File menu;
+   * means the user wants to save all the cards in the current list as a 'set'
+   */
   private class SaveMenuListener implements ActionListener {
-    public void actionPerformed(ActionEvent ev){
+    public void actionPerformed(ActionEvent ev) {
       // bring up a file dialog Box
       // let the user name and save the set
-      QuizCard card = new QuizCArd(question.getText(), answer.getText());
+      QuizCard card = new QuizCard(question.getText(), answer.getText());
       cardList.add(card);
 
+      File workingDirectory = new File(System.getProperty("user.dir"));
+      // System.out.println(workingDirectory);
+
       JFileChooser fileSave = new JFileChooser();
+      fileSave.setCurrentDirectory(workingDirectory);
       fileSave.showSaveDialog(frame);
       saveFile(fileSave.getSelectedFile());
     }
   } // close inner class
 
+  /**
+   * Inner Class Purpose: Triggerd by choosing "New" from the File menu; means the
+   * user wants to start a brand new set (so we clear out the card list and the
+   * text area)
+   */
   private class NewMenuListener implements ActionListener {
-    public void actionPerformed(ActionEvent ev){
+    public void actionPerformed(ActionEvent ev) {
       // clear out the card list, and clear out the text areas
-      carrList.clear();
+      cardList.clear();
       clearCard();
     }
   }
 
-  private void clearCard(){
+  private void clearCard() {
     question.setText("");
     answer.setText("");
     question.requestFocus();
   }
 
-  private void saveFile(File file){
-      // iterate through the list of cards, and write each one out to a text file
-      // in a parseable way (in other words, with clear separations between parts)
-      try{
-          BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-          for(QuziCard card:cardList){
-            writer.write(card.getQeustion() + "/");
-            writer.write(card.getAnswer() + "\n");
-          }
-
-        System.out.println("couldn't write the cardList out");
-        ex.printStackTrace();
+  private void saveFile(File file) {
+    // iterate through the list of cards, and write each one out to a text file
+    // in a parseable way (in other words, with clear separations between parts)
+    try {
+      BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+      for (QuizCard card : cardList) {
+        writer.write(card.getQuestion() + "/");
+        writer.write(card.getAnswer() + "\n");
       }
+      writer.close();
+
+    } catch (Exception ex) {
+      System.out.println("couldn't write the cardList out");
+      ex.printStackTrace();
+    }
   }
 }
