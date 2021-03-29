@@ -11,41 +11,10 @@
                 "data": {
                     "id": "ca7dqwoiyow0",
                     "created": 1616771733241,
-                    "text": "topic",
+                    "text": "Thread",
                     "expandState": "expand"
                 },
-                "children": [
-                    {
-                        "data": {
-                            "id": "ca7drkud9ag0",
-                            "created": 1616771785837,
-                            "text": "GUI",
-                            "layout_filetree-down_offset": {
-                                "x": -93.7499986030162,
-                                "y": 12.499999813735428
-                            },
-                            "expandState": "expand"
-                        },
-                        "children": [
-                            {
-                                "data": {
-                                    "id": "ca7dsbm44680",
-                                    "created": 1616771844111,
-                                    "text": "asdf "
-                                },
-                                "children": []
-                            }
-                        ]
-                    },
-                    {
-                        "data": {
-                            "id": "ca7dscfggu80",
-                            "created": 1616771845885,
-                            "text": "asd"
-                        },
-                        "children": []
-                    }
-                ]
+                "children": []
             },
             {
                 "data": {
