@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Network/Network.iml" filepath="$PROJECT_DIR$/Network/Network.iml" />
-      <module fileurl="file://$PROJECT_DIR$/head-first-java.iml" filepath="$PROJECT_DIR$/head-first-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/head-first-java.iml" filepath="$PROJECT_DIR$/.idea/head-first-java.iml" />
     </modules>
   </component>
 </project>
